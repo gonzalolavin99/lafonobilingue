@@ -1,0 +1,22 @@
+---
+import { site, waMsg, saludo } from '../data/site';
+const wsp = waMsg(saludo);
+---
+
+<section id="como-funciona">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Paso a paso</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">¿Cómo empezamos?</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Sé que dar el primer paso puede dar nervios. Por eso lo hago simple y claro.</p>
+    <div class="steps reveal">
+      {site.pasos.map((p, i) => (
+        <div class="step">
+          <div class="num">{i + 1}</div>
+          <h3>{p.titulo}</h3>
+          <p>{p.texto}</p>
+        </div>
+      ))}
+    </div>
+    <div class="center" style="margin-top:36px"><a class="btn btn-wsp" href={wsp}>💬 Dar el primer paso</a></div>
+  </div>
+</section>

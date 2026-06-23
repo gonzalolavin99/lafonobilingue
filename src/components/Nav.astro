@@ -1,0 +1,31 @@
+---
+import { waMsg, saludo } from '../data/site';
+const wsp = waMsg(saludo);
+---
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Flga. <span>Fran</span></div>
+    <nav class="nav-links">
+      <a href="#modalidades">Modalidades</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#horarios">Horarios</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#faq">FAQ</a>
+      <a href="#agendar">Agendar</a>
+    </nav>
+    <a class="btn btn-wsp" href={wsp}>💬 Escríbeme</a>
+    <button class="burger" id="burger" type="button" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+
+<script>
+  const burger = document.getElementById('burger');
+  const links = document.querySelector('.nav-links') as HTMLElement | null;
+  burger?.addEventListener('click', () => {
+    if (!links) return;
+    const visible = getComputedStyle(links).display !== 'none';
+    links.style.display = visible ? 'none' : 'flex';
+  });
+</script>

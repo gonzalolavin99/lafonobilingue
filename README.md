@@ -11,49 +11,61 @@ y agende directo por WhatsApp.
 
 ## 🧩 Cómo está hecho (importante)
 
-Es un sitio **estático de un solo archivo**: todo vive en [`index.html`](index.html)
-(HTML + CSS + JavaScript juntos). **No hay framework, ni build, ni dependencias.**
+> **Rama `astro-migration`:** el sitio se migró a **[Astro](https://astro.build)**.
+> La versión estática original quedó como referencia en `docs/index-original.html`.
 
-- Para verlo en local: abre `index.html` en el navegador (doble clic), o levanta un
-  servidor simple: `python -m http.server 4321` y entra a `http://localhost:4321`.
-- Para editar textos, horarios, WhatsApp, Instagram o los videos: cambia el bloque
-  **`CONFIG`** que está al inicio del `<script>`, casi al final de `index.html`. Está
-  comentado y es lo único que normalmente hay que tocar.
+Ahora es un proyecto **Astro**: componentes `.astro`, datos tipados y cero (casi) JS en
+el navegador. El sitio sigue viéndose idéntico.
 
-```js
-const CONFIG = {
-  whatsapp: "56998844138",        // número en formato internacional, sin +
-  instagram: "flga.franvadiaz",    // usuario sin @
-  horarios: { ... },               // bloques por día ([] = cerrado)
-  videos: [ ... ]                  // enlaces de reels de Instagram
-};
+**Comandos:**
+
+```bash
+npm install        # instala dependencias (una vez)
+npm run dev        # servidor local en http://localhost:4321
+npm run build      # genera el sitio estático en dist/
+npm run preview    # previsualiza el build de producción
 ```
+
+**Dónde editar el contenido:**
+
+- Textos generales, **WhatsApp, Instagram, horarios, pasos y videos** → `src/data/site.ts`
+  (es el ex-bloque `CONFIG`, ahora tipado).
+- **Testimonios** → `src/content/testimonios.json`
+- **FAQ** → `src/content/faq.json`
+- **Estructura/diseño** → componentes en `src/components/` y estilos en `src/styles/global.css`.
 
 ---
 
 ## 📁 Archivos
 
-| Archivo | Qué es |
+| Ruta | Qué es |
 |---|---|
-| `index.html` | El sitio completo (HTML + CSS + JS) |
-| `assets/favicon.svg` | Ícono de la pestaña del navegador |
-| `assets/img/fran.jpg` | Foto de perfil de Francisca (hero y "Sobre mí") |
-| `assets/img/decoracion.jpg` | Foto de fondo del banner "la fono bilingüe" |
-| `assets/img/og.png` | Imagen de previsualización al compartir el link (1200×630) |
-| `assets/img/originales/` | `.jfif` originales de las fotos (gitignored) |
-| `tools/make_og.py` | Script para regenerar `og.png` (requiere Python + Pillow) |
-| `docs/PLAN-MIGRACION-ASTRO.md` | Plan completo para migrar el sitio a Astro |
+| `src/pages/index.astro` | Página principal: ensambla los componentes |
+| `src/layouts/Base.astro` | `<head>`, fuentes y SEO/Open Graph |
+| `src/components/` | Cada sección (Hero, Modalidades, FAQ, …) |
+| `src/data/site.ts` | Ex-`CONFIG`: WhatsApp, Instagram, horarios, pasos, videos |
+| `src/content/faq.json` · `testimonios.json` | Contenido tipado (Content Collections) |
+| `src/content.config.ts` | Esquemas Zod de las colecciones |
+| `src/assets/fran.jpg` | Foto optimizada con `<Image>` |
+| `src/styles/global.css` | Todos los estilos del sitio |
+| `public/` | `favicon.svg`, `og.png`, `decoracion.jpg` (se sirven tal cual) |
+| `tools/make_og.py` | Script para regenerar `og.png` (Python + Pillow) |
+| `docs/PLAN-MIGRACION-ASTRO.md` | Plan completo de la migración |
+| `docs/index-original.html` | Versión estática original (referencia) |
 
 ---
 
 ## 🚀 Deploy (Vercel)
 
 El proyecto está en Vercel (cuenta de Gonzalo), nombre de proyecto **`lafonobilingue`**.
-Cada cambio se publica con:
+Vercel **detecta Astro solo** (build `astro build`, output `dist/`).
 
-```bash
-vercel deploy . --prod
-```
+Flujo seguro con ramas:
+
+- Cada push a la rama `astro-migration` genera una **preview URL** automática en Vercel
+  para probar sin tocar producción.
+- `lafonobilingue.vercel.app` (prod) sigue sirviendo `main` hasta que hagamos el merge.
+- Cuando la preview esté 100% ✅ → merge a `main` → Vercel publica Astro en prod.
 
 La URL pública `lafonobilingue.vercel.app` se mantiene siempre igual.
 
@@ -80,8 +92,12 @@ La URL pública `lafonobilingue.vercel.app` se mantiene siempre igual.
 - [x] **Testimonios** — 3 tarjetas con estrellas. *Info de ejemplo: falta que Francisca pase los textos reales (editar `CONFIG.testimonios`).*
 - [x] **Preguntas frecuentes (FAQ)** — acordeón plegable con 6 preguntas. *Info de ejemplo: ajustar respuestas con datos reales (editar `CONFIG.faq`).*
 
-> Todas las secciones nuevas son editables desde el bloque **`CONFIG`** al final de
-> `index.html` (`pasos`, `testimonios`, `faq`). No hay que tocar nada más.
+- [x] **Migración a Astro** (rama `astro-migration`): componentes reutilizables, datos
+      tipados (`src/data/site.ts`), Content Collections (FAQ + testimonios) e imágenes
+      optimizadas con `<Image>`.
+
+> El contenido se edita en `src/data/site.ts` (config general) y en
+> `src/content/*.json` (testimonios y FAQ). El diseño vive en `src/components/`.
 
 ---
 
@@ -100,7 +116,6 @@ La URL pública `lafonobilingue.vercel.app` se mantiene siempre igual.
 
 1. Clonar el repo: `git clone <URL-del-repo>`
 2. Abrir la carpeta con Claude Code.
-3. Pedirle lo que quieras (ej: "agrega la sección de Preguntas Frecuentes con info de
-   ejemplo"). El sitio es un solo archivo, así que es fácil de editar.
-4. Para publicar los cambios hay que tener acceso a la cuenta de Vercel de Gonzalo
-   (`vercel deploy . --prod`).
+3. `npm install` y luego `npm run dev` para levantar el sitio en local.
+4. Editar contenido en `src/data/site.ts` o `src/content/*.json`; el diseño en `src/components/`.
+5. Para publicar: push a la rama (preview de Vercel) o merge a `main` (producción).

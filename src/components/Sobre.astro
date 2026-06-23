@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import franImg from '../assets/fran.jpg';
+import { waMsg, saludo } from '../data/site';
+const wsp = waMsg(saludo);
+
+const especialidades = [
+  'Lenguaje bilingüe',
+  'Motricidad orofacial',
+  'Deglución',
+  'Estimulación temprana',
+  'Dislexia',
+  'Lenguaje y habla en adultos',
+  'Pronunciación en inglés',
+];
+---
+
+<section id="sobre" class="section-soft">
+  <div class="wrap about">
+    <div class="about-photo reveal">
+      <Image src={franImg} alt="Francisca Valenzuela" widths={[340, 680]} sizes="(max-width: 880px) 340px, 45vw" />
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Sobre mí</span>
+      <h2>Hola, soy Fran 👋</h2>
+      <p>Soy fonoaudióloga titulada de la Universidad Andrés Bello y bilingüe (español–inglés). Con niñas y niños trabajo el desarrollo del lenguaje, motricidad orofacial, terapia miofuncional, deglución y estimulación temprana. En adultos atiendo motricidad orofacial y deglución, lenguaje y habla de origen neurológico (como afasia o disartria) y pronunciación en inglés.</p>
+      <p class="quote">"Cada persona avanza a su ritmo, y mi rol es acompañar ese camino con cariño y profesionalismo."</p>
+      <p>Atiendo principalmente a niñas y niños, y también a adultos, de forma presencial en Santiago y online en todo LATAM, adaptándome a lo que cada persona y su familia necesitan.</p>
+      <div class="hero-badges" style="margin:0 0 26px">
+        {especialidades.map((e) => <span class="chip">{e}</span>)}
+      </div>
+      <a class="btn btn-soft" href={wsp}>💬 Conversemos</a>
+    </div>
+  </div>
+</section>

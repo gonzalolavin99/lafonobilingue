@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Modalidades from '../components/Modalidades.astro';
+import Sobre from '../components/Sobre.astro';
+import Banner from '../components/Banner.astro';
+import ComoFunciona from '../components/ComoFunciona.astro';
+import Horarios from '../components/Horarios.astro';
+import Videos from '../components/Videos.astro';
+import Testimonios from '../components/Testimonios.astro';
+import Faq from '../components/Faq.astro';
+import Agendar from '../components/Agendar.astro';
+import Footer from '../components/Footer.astro';
+import FabWhatsApp from '../components/FabWhatsApp.astro';
+---
+
+<Base>
+  <Nav />
+  <Hero />
+  <Modalidades />
+  <Sobre />
+  <Banner />
+  <ComoFunciona />
+  <Horarios />
+  <Videos />
+  <Testimonios />
+  <Faq />
+  <Agendar />
+  <Footer />
+  <FabWhatsApp />
+</Base>
+
+<script>
+  // Animaciones reveal on scroll (igual que el index.html original).
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (en.isIntersecting) {
+        en.target.classList.add('show');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>

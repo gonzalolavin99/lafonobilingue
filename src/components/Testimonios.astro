@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+const testimonios = await getCollection('testimonios');
+---
+
+<section id="testimonios">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Familias que confiaron</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">Lo que dicen las familias</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Pequeños grandes avances que hacen toda la diferencia.</p>
+    <div class="testis reveal">
+      {testimonios.map((t) => (
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p>"{t.data.texto}"</p>
+          <div class="who">— {t.data.autor}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

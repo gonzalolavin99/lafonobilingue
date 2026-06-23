@@ -1,0 +1,17 @@
+---
+import { waMsg, saludo, igUrl } from '../data/site';
+const wsp = waMsg(saludo);
+const year = new Date().getFullYear();
+---
+
+<footer id="contacto">
+  <div class="wrap">
+    <h2>¿Conversamos?</h2>
+    <p>Estoy para ayudarte. Escríbeme y demos juntos el primer paso.</p>
+    <div class="social">
+      <a href={wsp} title="WhatsApp">💬</a>
+      <a href={igUrl} target="_blank" title="Instagram">📸</a>
+    </div>
+    <p class="copyright">© {year} Flga. Francisca Valenzuela Díaz · Fonoaudióloga bilingüe</p>
+  </div>
+</footer>

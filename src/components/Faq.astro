@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import { waMsg, saludo } from '../data/site';
+const wsp = waMsg(saludo);
+const faq = (await getCollection('faq')).sort((a, b) => a.data.orden - b.data.orden);
+---
+
+<section id="faq" class="section-soft">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Preguntas frecuentes</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">Resolvamos tus dudas</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Lo que más me preguntan. Si te queda alguna duda, escríbeme con confianza.</p>
+    <div class="faq-list reveal">
+      {faq.map((item) => (
+        <div class="faq-item">
+          <button class="faq-q" type="button">{item.data.pregunta}<span class="ico-plus">+</span></button>
+          <div class="faq-a"><p>{item.data.respuesta}</p></div>
+        </div>
+      ))}
+    </div>
+    <div class="center" style="margin-top:30px"><a class="btn btn-wsp" href={wsp}>💬 Tengo otra pregunta</a></div>
+  </div>
+</section>
+
+<script>
+  // Acordeón: abre/cierra cada item ajustando max-height (igual que el index.html original).
+  document.querySelectorAll<HTMLElement>('.faq-item').forEach((el) => {
+    const btn = el.querySelector('.faq-q');
+    const ans = el.querySelector<HTMLElement>('.faq-a');
+    btn?.addEventListener('click', () => {
+      const open = el.classList.toggle('open');
+      if (ans) ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '';
+    });
+  });
+</script>

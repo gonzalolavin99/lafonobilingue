@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+import franImg from '../assets/fran.jpg';
+import { waMsg, saludo } from '../data/site';
+const wsp = waMsg(saludo);
+---
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">La fono bilingüe · ES / EN</span>
+      <h1>El lenguaje de tu familia, <em>en las mejores manos</em></h1>
+      <p class="lead">Soy Francisca, fonoaudióloga bilingüe. Acompaño el desarrollo del lenguaje, el habla y la comunicación — principalmente de niñas y niños, y también de adultos — en español e inglés, con terapia cercana y basada en evidencia.</p>
+      <div class="hero-cta">
+        <a class="btn btn-wsp" href={wsp}>💬 Agendar por WhatsApp</a>
+        <a class="btn btn-soft" href="#horarios">Ver horarios</a>
+      </div>
+      <div class="hero-badges">
+        <span class="chip">Presencial Santiago</span>
+        <span class="chip">Online LATAM</span>
+        <span class="chip">Español · English</span>
+        <span class="chip">Niños y adultos</span>
+      </div>
+    </div>
+
+    <div class="hero-photo reveal">
+      <div class="blob">
+        <Image src={franImg} alt="Francisca Valenzuela, fonoaudióloga" widths={[420, 840]} sizes="(max-width: 880px) 80vw, 420px" />
+      </div>
+      <div class="float-tag t1"><span class="dot"></span> Disponible esta semana</div>
+      <div class="float-tag t2">Motricidad orofacial</div>
+    </div>
+  </div>
+</section>

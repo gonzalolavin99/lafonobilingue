@@ -6,6 +6,8 @@
 
 # Dependencias / build
 node_modules/
+dist/
+.astro/
 
 # Sistema operativo
 .DS_Store

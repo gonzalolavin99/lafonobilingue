@@ -1,0 +1,25 @@
+---
+import { site, waMsg, saludo } from '../data/site';
+const wsp = waMsg(saludo);
+const dias = Object.entries(site.horarios);
+---
+
+<section id="horarios">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Disponibilidad</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">Horarios disponibles</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Estos son mis bloques de atención habituales. Coordinamos el día y la hora exacta por WhatsApp.</p>
+    <div class="sched reveal">
+      {dias.map(([dia, bloques]) => (
+        <div class={`day ${bloques.length === 0 ? 'off' : ''}`}>
+          <div class="name">{dia}</div>
+          {bloques.length === 0
+            ? <div class="slot">Cerrado</div>
+            : bloques.map((b) => <div class="slot">{b}</div>)}
+        </div>
+      ))}
+    </div>
+    <p class="note">¿No encuentras un horario que te acomode? Escríbeme y buscamos una solución.</p>
+    <div class="center" style="margin-top:26px"><a class="btn btn-wsp" href={wsp}>💬 Reservar un horario</a></div>
+  </div>
+</section>

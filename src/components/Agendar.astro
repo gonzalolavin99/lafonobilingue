@@ -1,0 +1,73 @@
+---
+import { waBase } from '../data/site';
+---
+
+<section id="agendar">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Agenda tu hora</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">Reserva en 1 minuto</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:520px; margin:14px auto 0">Completa tus datos y al enviar se abrirá WhatsApp con tu solicitud lista. Francisca recibe la notificación al instante y te confirma.</p>
+
+    <form class="book-card reveal" id="book-form" data-wa-base={waBase} style="text-align:left">
+      <div class="field">
+        <label>Tu nombre</label>
+        <input type="text" name="nombre" placeholder="Ej: María José" required />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Modalidad</label>
+          <select name="modalidad" required>
+            <option value="" disabled selected>Elige una opción</option>
+            <option>A domicilio</option>
+            <option>En consulta</option>
+            <option>Por videollamada</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Idioma de la sesión</label>
+          <select name="idioma" required>
+            <option>Español</option>
+            <option>English</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Día preferido</label>
+          <input type="date" name="fecha" required />
+        </div>
+        <div class="field">
+          <label>Horario preferido</label>
+          <input type="time" name="hora" required />
+        </div>
+      </div>
+      <div class="field">
+        <label>¿Para quién es y qué necesitas? (opcional)</label>
+        <textarea name="motivo" rows="3" placeholder="Ej: Es para mi hijo de 5 años, queremos trabajar pronunciación..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-wsp">💬 Enviar solicitud por WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('book-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = e.target as HTMLFormElement;
+    const waBase = form.dataset.waBase || '';
+    const get = (n: string) => (f.elements.namedItem(n) as HTMLInputElement | null)?.value || '';
+    const msg =
+`¡Hola Fran! 👋 Quiero agendar una sesión:
+
+👤 Nombre: ${get('nombre')}
+📍 Modalidad: ${get('modalidad')}
+🗣️ Idioma: ${get('idioma')}
+📅 Día: ${get('fecha')}
+⏰ Hora: ${get('hora')}
+📝 Detalle: ${get('motivo') || '—'}
+
+¡Quedo atenta a tu confirmación! 💛`;
+    window.open(`${waBase}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+</script>

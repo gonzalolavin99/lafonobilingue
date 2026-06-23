@@ -1,0 +1,23 @@
+---
+const modalidades = [
+  { ico: '🏠', titulo: 'A domicilio', texto: 'Voy a tu casa con todo el material. Comodidad total para los más pequeños y para quienes prefieren su propio espacio.' },
+  { ico: '🏢', titulo: 'En consulta', texto: 'Un espacio cálido y preparado para cada sesión, con todos los recursos a mano para tu terapia.' },
+  { ico: '💻', titulo: 'Por videollamada', texto: 'Sesiones online efectivas desde donde estés. Ideal si vives lejos o tienes una agenda apretada.' },
+];
+---
+
+<section id="modalidades">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Cómo trabajo</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">Tres formas de atenderte</h2>
+    <div class="cards">
+      {modalidades.map((m) => (
+        <div class="card reveal">
+          <div class="ico">{m.ico}</div>
+          <h3>{m.titulo}</h3>
+          <p>{m.texto}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

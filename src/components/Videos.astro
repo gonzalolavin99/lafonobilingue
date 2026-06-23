@@ -1,0 +1,41 @@
+---
+import { site, igUrl } from '../data/site';
+---
+
+<section id="videos" class="section-soft">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Mi Instagram</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">Mira cómo trabajo</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Tips, ejercicios y momentos de mis sesiones. Sígueme para más contenido.</p>
+    <div class="videos">
+      {site.videos.map((v) => (
+        v.src ? (
+          <div class="reel">
+            <video src={v.src} poster={v.poster} controls playsinline preload="metadata"></video>
+          </div>
+        ) : v.url ? (
+          <div class="reel" data-reel={v.url}>
+            <div class="ph"><div class="play">&#9654;</div><strong>{v.titulo}</strong><small>Ver reel</small></div>
+          </div>
+        ) : (
+          <a class="reel" href={igUrl} target="_blank">
+            <div class="ph"><div class="play">&#9654;</div><strong>{v.titulo}</strong><small>Ver en Instagram</small></div>
+          </a>
+        )
+      ))}
+    </div>
+    <div class="ig-cta reveal"><a class="btn btn-soft" href={igUrl} target="_blank">Ver más en Instagram</a></div>
+  </div>
+</section>
+
+<script>
+  // Carga diferida de reels de Instagram: el primer clic inserta el iframe.
+  document.querySelectorAll<HTMLElement>('.reel[data-reel]').forEach((card) => {
+    card.addEventListener('click', () => {
+      const url = card.dataset.reel;
+      if (!url) return;
+      const embed = url.replace(/\/?$/, '/') + 'embed';
+      card.innerHTML = `<iframe src="${embed}" allowtransparency="true" allowfullscreen loading="lazy"></iframe>`;
+    }, { once: true });
+  });
+</script>
