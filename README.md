@@ -36,11 +36,13 @@ const CONFIG = {
 | Archivo | Qué es |
 |---|---|
 | `index.html` | El sitio completo (HTML + CSS + JS) |
-| `fran.jpg` | Foto de perfil de Francisca (hero y "Sobre mí") |
-| `decoracion.jpg` | Foto de fondo del banner "la fono bilingüe" |
-| `og.png` | Imagen de previsualización al compartir el link (1200×630) |
-| `favicon.svg` | Ícono de la pestaña del navegador |
-| `make_og.py` | Script para regenerar `og.png` (requiere Python + Pillow) |
+| `assets/favicon.svg` | Ícono de la pestaña del navegador |
+| `assets/img/fran.jpg` | Foto de perfil de Francisca (hero y "Sobre mí") |
+| `assets/img/decoracion.jpg` | Foto de fondo del banner "la fono bilingüe" |
+| `assets/img/og.png` | Imagen de previsualización al compartir el link (1200×630) |
+| `assets/img/originales/` | `.jfif` originales de las fotos (gitignored) |
+| `tools/make_og.py` | Script para regenerar `og.png` (requiere Python + Pillow) |
+| `docs/PLAN-MIGRACION-ASTRO.md` | Plan completo para migrar el sitio a Astro |
 
 ---
 

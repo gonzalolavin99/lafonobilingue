@@ -4,7 +4,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import os
 
 W, H = 1200, 630
-base = os.path.dirname(os.path.abspath(__file__))
+# El script vive en tools/; las imagenes estan en ../assets/img/
+base = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "img")
 
 # --- Paleta pastel ---
 CELESTE = (191, 227, 242)
