@@ -278,6 +278,55 @@ footer p{ color:var(--tinta-soft); max-width:440px; margin:0 auto 26px; }
 .reveal.show{ opacity:1; transform:none; }
 
 /* =============================================================
+   CÓMO FUNCIONA (pasos)
+   ============================================================= */
+.steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-top:50px; }
+.step{
+  background:var(--blanco); border-radius:var(--radio); padding:30px 24px; text-align:center;
+  box-shadow:var(--sombra); border:1px solid rgba(255,255,255,.8); position:relative;
+  transition:transform .3s;
+}
+.step:hover{ transform:translateY(-8px); }
+.step .num{
+  width:52px; height:52px; border-radius:50%; margin:0 auto 16px; display:grid; place-items:center;
+  font-family:'Fraunces',serif; font-weight:600; font-size:1.3rem; color:#fff;
+  background:linear-gradient(135deg,var(--celeste),var(--rosado));
+  box-shadow:0 8px 20px -8px rgba(74,67,88,.35);
+}
+.step h3{ font-size:1.12rem; margin-bottom:8px; }
+.step p{ color:var(--tinta-soft); font-size:.92rem; }
+
+/* =============================================================
+   TESTIMONIOS
+   ============================================================= */
+.testis{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:50px; }
+.testi{
+  background:var(--blanco); border-radius:var(--radio); padding:30px 28px; text-align:left;
+  box-shadow:var(--sombra); border:1px solid rgba(255,255,255,.8);
+}
+.testi .stars{ color:#f5c451; font-size:1rem; margin-bottom:14px; letter-spacing:2px; }
+.testi p{ color:var(--tinta); font-size:1rem; font-style:italic; font-family:'Fraunces',serif; margin-bottom:18px; }
+.testi .who{ color:var(--tinta-soft); font-size:.88rem; font-weight:500; font-style:normal; font-family:'Poppins',sans-serif; }
+
+/* =============================================================
+   FAQ (acordeón)
+   ============================================================= */
+.faq-list{ max-width:760px; margin:46px auto 0; text-align:left; }
+.faq-item{
+  background:var(--blanco); border-radius:20px; margin-bottom:14px;
+  box-shadow:var(--sombra); border:1px solid rgba(255,255,255,.8); overflow:hidden;
+}
+.faq-q{
+  width:100%; background:none; border:none; cursor:pointer; font-family:'Poppins',sans-serif;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:22px 24px; font-size:1.02rem; font-weight:500; color:var(--tinta); text-align:left;
+}
+.faq-q .ico-plus{ flex:none; font-size:1.4rem; color:var(--rosado); transition:transform .3s; line-height:1; }
+.faq-item.open .ico-plus{ transform:rotate(45deg); }
+.faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+.faq-a p{ padding:0 24px 22px; color:var(--tinta-soft); font-size:.96rem; margin:0; }
+
+/* =============================================================
    RESPONSIVE
    ============================================================= */
 @media (max-width:880px){
@@ -288,6 +337,8 @@ footer p{ color:var(--tinta-soft); max-width:440px; margin:0 auto 26px; }
   .hero-cta, .hero-badges{ justify-content:center; }
   .hero-photo{ order:-1; }
   .cards{ grid-template-columns:1fr; }
+  .steps{ grid-template-columns:1fr 1fr; }
+  .testis{ grid-template-columns:1fr; }
   .about{ grid-template-columns:1fr; }
   .about-photo{ max-width:340px; margin:0 auto; }
   .videos{ grid-template-columns:1fr 1fr; }
@@ -297,6 +348,7 @@ footer p{ color:var(--tinta-soft); max-width:440px; margin:0 auto 26px; }
 }
 @media (max-width:520px){
   .videos{ grid-template-columns:1fr; }
+  .steps{ grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -309,8 +361,10 @@ footer p{ color:var(--tinta-soft); max-width:440px; margin:0 auto 26px; }
     <nav class="nav-links">
       <a href="#modalidades">Modalidades</a>
       <a href="#sobre">Sobre mí</a>
+      <a href="#como-funciona">Cómo funciona</a>
       <a href="#horarios">Horarios</a>
-      <a href="#videos">Videos</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#faq">FAQ</a>
       <a href="#agendar">Agendar</a>
     </nav>
     <a class="btn btn-wsp" id="nav-wsp">💬 Escríbeme</a>
@@ -408,6 +462,17 @@ footer p{ color:var(--tinta-soft); max-width:440px; margin:0 auto 26px; }
   </div>
 </section>
 
+<!-- ====================== CÓMO FUNCIONA ====================== -->
+<section id="como-funciona">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Paso a paso</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">¿Cómo empezamos?</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Sé que dar el primer paso puede dar nervios. Por eso lo hago simple y claro.</p>
+    <div class="steps reveal" id="steps"><!-- generado por JS --></div>
+    <div class="center" style="margin-top:36px"><a class="btn btn-wsp" id="steps-wsp">💬 Dar el primer paso</a></div>
+  </div>
+</section>
+
 <!-- ========================= HORARIOS ========================= -->
 <section id="horarios">
   <div class="wrap center">
@@ -428,6 +493,27 @@ footer p{ color:var(--tinta-soft); max-width:440px; margin:0 auto 26px; }
     <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Tips, ejercicios y momentos de mis sesiones. Sígueme para más contenido.</p>
     <div class="videos" id="videos-grid"><!-- generado por JS --></div>
     <div class="ig-cta reveal"><a class="btn btn-soft" id="ig-link" target="_blank">Ver más en Instagram</a></div>
+  </div>
+</section>
+
+<!-- ======================= TESTIMONIOS ======================= -->
+<section id="testimonios">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Familias que confiaron</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">Lo que dicen las familias</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Pequeños grandes avances que hacen toda la diferencia.</p>
+    <div class="testis reveal" id="testis"><!-- generado por JS --></div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section id="faq" class="section-soft">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Preguntas frecuentes</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">Resolvamos tus dudas</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Lo que más me preguntan. Si te queda alguna duda, escríbeme con confianza.</p>
+    <div class="faq-list reveal" id="faq-list"><!-- generado por JS --></div>
+    <div class="center" style="margin-top:30px"><a class="btn btn-wsp" id="faq-wsp">💬 Tengo otra pregunta</a></div>
   </div>
 </section>
 
@@ -525,6 +611,37 @@ const CONFIG = {
     { url: "https://www.instagram.com/reel/DZaTcGiRsH6/", titulo: "Baby signs" },
     { url: "https://www.instagram.com/reel/DXUhW6WEVcv/", titulo: "Ejercicios para respiradores orales" },
     { url: "https://www.instagram.com/reel/DWHm2kiD2nC/", titulo: "Consejos" }
+  ],
+
+  // 🪜 Pasos de "Cómo funciona" (puedes editar el texto libremente)
+  pasos: [
+    { titulo: "Me escribes",          texto: "Me cuentas por WhatsApp qué necesitas. Sin compromiso y resuelvo tus primeras dudas." },
+    { titulo: "Evaluación inicial",   texto: "Nos juntamos para conocer al peque y evaluar su lenguaje y comunicación con juego." },
+    { titulo: "Plan personalizado",   texto: "Diseño un plan a la medida, con objetivos claros y realistas para tu familia." },
+    { titulo: "Sesiones",             texto: "Trabajamos juntos sesión a sesión, lúdico y cercano, y vamos viendo los avances." }
+  ],
+
+  // 💬 Testimonios (info de EJEMPLO — reemplazar por frases reales de las familias)
+  testimonios: [
+    { texto: "Tomás pasó de frustrarse a hablar con confianza. Fran es cercana y los niños la adoran.", autor: "M., mamá de Tomás (5)" },
+    { texto: "Las sesiones online funcionaron perfecto para nosotros que vivimos lejos. Vimos avances en semanas.", autor: "C., papá de Isidora (4)" },
+    { texto: "Nos explicó todo con paciencia y nos dio herramientas para apoyar en casa. 100% recomendada.", autor: "P., mamá de Benjamín (6)" }
+  ],
+
+  // ❓ Preguntas frecuentes (info de EJEMPLO — ajustar respuestas con datos reales)
+  faq: [
+    { q: "¿Desde qué edad atiendes?",
+      a: "Atiendo a niñas y niños desde la etapa preescolar en adelante (aprox. desde los 2 años) y también escolares. Si tienes dudas sobre la edad de tu peque, escríbeme y conversamos." },
+    { q: "¿Cuánto dura una sesión?",
+      a: "Cada sesión dura aproximadamente 45 minutos. La frecuencia (semanal o quincenal) la definimos según las necesidades de cada niña o niño." },
+    { q: "¿Cómo es la primera evaluación? ¿Entregas informe?",
+      a: "La primera sesión es una evaluación inicial donde conozco al peque a través del juego y observo su lenguaje y comunicación. A partir de ella elaboro un plan personalizado y, si lo necesitas, te entrego un informe." },
+    { q: "¿Haces boleta? ¿Sirve para reembolso de Isapre?",
+      a: "Sí, emito boleta de honorarios que puedes presentar en tu Isapre o seguro complementario para solicitar reembolso, según la cobertura de tu plan." },
+    { q: "¿Qué zonas cubres a domicilio?",
+      a: "Atiendo a domicilio en sectores de Santiago. Escríbeme con tu comuna y te confirmo disponibilidad. Si quedas fuera de la zona, siempre está la opción online." },
+    { q: "¿Atiendes en inglés?",
+      a: "¡Sí! Soy bilingüe español–inglés, así que puedo realizar la terapia en cualquiera de los dos idiomas, ideal para familias expat o bilingües." }
   ]
 };
 
@@ -536,7 +653,7 @@ const waMsg  = (txt) => waBase + "?text=" + encodeURIComponent(txt);
 
 // Enlaces generales de WhatsApp
 const saludo = "¡Hola Fran! 👋 Vi tu página web y me gustaría agendar una sesión.";
-["nav-wsp","hero-wsp","about-wsp","sched-wsp","fab-wsp","foot-wsp"].forEach(id=>{
+["nav-wsp","hero-wsp","about-wsp","sched-wsp","steps-wsp","faq-wsp","fab-wsp","foot-wsp"].forEach(id=>{
   const el = document.getElementById(id);
   if(el) el.href = waMsg(saludo);
 });
@@ -576,6 +693,34 @@ CONFIG.videos.forEach(v=>{
     vids.insertAdjacentHTML("beforeend",
       `<a class="reel" href="${igUrl}" target="_blank"><div class="ph"><div class="play">&#9654;</div><strong>${v.titulo}</strong><small>Ver en Instagram</small></div></a>`);
   }
+});
+
+// Render pasos (cómo funciona)
+const stepsEl = document.getElementById("steps");
+(CONFIG.pasos || []).forEach((p, i)=>{
+  stepsEl.insertAdjacentHTML("beforeend",
+    `<div class="step"><div class="num">${i+1}</div><h3>${p.titulo}</h3><p>${p.texto}</p></div>`);
+});
+
+// Render testimonios
+const testisEl = document.getElementById("testis");
+(CONFIG.testimonios || []).forEach(t=>{
+  testisEl.insertAdjacentHTML("beforeend",
+    `<div class="testi"><div class="stars">★★★★★</div><p>"${t.texto}"</p><div class="who">— ${t.autor}</div></div>`);
+});
+
+// Render FAQ (acordeón)
+const faqEl = document.getElementById("faq-list");
+(CONFIG.faq || []).forEach(item=>{
+  const el = document.createElement("div");
+  el.className = "faq-item";
+  el.innerHTML = `<button class="faq-q" type="button">${item.q}<span class="ico-plus">+</span></button><div class="faq-a"><p>${item.a}</p></div>`;
+  const ans = el.querySelector(".faq-a");
+  el.querySelector(".faq-q").addEventListener("click", ()=>{
+    const open = el.classList.toggle("open");
+    ans.style.maxHeight = open ? ans.scrollHeight + "px" : null;
+  });
+  faqEl.appendChild(el);
 });
 
 // Formulario -> WhatsApp

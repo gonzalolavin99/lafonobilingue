@@ -74,24 +74,16 @@ La URL pública `lafonobilingue.vercel.app` se mantiene siempre igual.
       sale la foto + nombre + título, no un recuadro en blanco.
 - [x] **Favicon** con la marca.
 - [x] Publicado en Vercel con URL propia: `lafonobilingue.vercel.app`.
+- [x] **"Cómo funciona" en 4 pasos** (Me escribes → Evaluación inicial → Plan personalizado → Sesiones).
+- [x] **Testimonios** — 3 tarjetas con estrellas. *Info de ejemplo: falta que Francisca pase los textos reales (editar `CONFIG.testimonios`).*
+- [x] **Preguntas frecuentes (FAQ)** — acordeón plegable con 6 preguntas. *Info de ejemplo: ajustar respuestas con datos reales (editar `CONFIG.faq`).*
+
+> Todas las secciones nuevas son editables desde el bloque **`CONFIG`** al final de
+> `index.html` (`pasos`, `testimonios`, `faq`). No hay que tocar nada más.
 
 ---
 
 ## 📋 Lo que QUEREMOS hacer (pendiente)
-
-> Las secciones nuevas se llenarían primero con **info de ejemplo** y luego Francisca
-> la ajusta con datos reales.
-
-1. **Preguntas frecuentes (FAQ)** — acordeón plegable que responda lo más preguntado:
-   - ¿Desde qué edad atiende?
-   - ¿Cuánto dura una sesión?
-   - ¿Cómo es la primera evaluación? ¿Entrega informe?
-   - ¿Hace boleta / sirve para reembolso de Isapre?
-   - ¿Qué zonas cubre a domicilio?
-2. **"Cómo funciona" en 3–4 pasos** — *1. Me escribes → 2. Evaluación inicial →
-   3. Plan personalizado → 4. Sesiones*. Para bajar la ansiedad de "no sé cómo empezar".
-3. **Testimonios** — 2–3 frases cortas de mamás/papás (con inicial, ej: "M., mamá de Tomás").
-   Falta que Francisca pase los textos reales.
 
 ### Opcionales / fase 2
 - Valores / precios (o "consultar").

@@ -1,6 +1,9 @@
 # Vercel
 .vercel
 
+# Config local de herramientas
+.claude/
+
 # Dependencias / build
 node_modules/
 
