@@ -22,6 +22,8 @@ export const ui = {
     },
     nav: {
       modalidades: 'Modalidades',
+      areas: 'Áreas',
+      precios: 'Precios',
       sobre: 'Sobre mí',
       como: 'Cómo funciona',
       horarios: 'Horarios',
@@ -147,6 +149,8 @@ export const ui = {
     },
     nav: {
       modalidades: 'Services',
+      areas: 'Areas',
+      precios: 'Pricing',
       sobre: 'About me',
       como: 'How it works',
       horarios: 'Schedule',

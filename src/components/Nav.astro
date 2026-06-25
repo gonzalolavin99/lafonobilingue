@@ -1,5 +1,5 @@
 ---
-import { useTranslations, localizePath, waGreeting } from '../i18n/utils';
+import { useTranslations, localizePath, getAlternatePath, waGreeting } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 import { site } from '../data/site';
 
@@ -8,20 +8,23 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const wsp = waGreeting(site.whatsapp, lang);
 const other: Lang = lang === 'es' ? 'en' : 'es';
-const otherPath = localizePath('/', other);
+const otherPath = getAlternatePath(Astro.url, other);
+const home = localizePath('/', lang);
+const preciosPath = localizePath('/precios', lang);
+const areasPath = localizePath('/areas', lang);
 ---
 
 <header class="nav">
   <div class="nav-inner">
     <div class="logo">Flga. <span>Fran</span></div>
     <nav class="nav-links">
-      <a href="#modalidades">{t.nav.modalidades}</a>
-      <a href="#sobre">{t.nav.sobre}</a>
-      <a href="#como-funciona">{t.nav.como}</a>
-      <a href="#horarios">{t.nav.horarios}</a>
-      <a href="#testimonios">{t.nav.testimonios}</a>
-      <a href="#faq">{t.nav.faq}</a>
-      <a href="#agendar">{t.nav.agendar}</a>
+      <a href={`${home}#modalidades`}>{t.nav.modalidades}</a>
+      <a href={areasPath}>{t.nav.areas}</a>
+      <a href={preciosPath}>{t.nav.precios}</a>
+      <a href={`${home}#sobre`}>{t.nav.sobre}</a>
+      <a href={`${home}#horarios`}>{t.nav.horarios}</a>
+      <a href={`${home}#faq`}>{t.nav.faq}</a>
+      <a href={`${home}#agendar`}>{t.nav.agendar}</a>
     </nav>
     <div class="nav-actions">
       <a class="lang-switch" href={otherPath} title={t.nav.switchLabel} aria-label={t.nav.switchLabel}>{t.nav.switchTo}</a>

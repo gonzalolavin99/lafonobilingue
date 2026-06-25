@@ -1,0 +1,37 @@
+---
+import type { Lang } from '../i18n/ui';
+import { waGreeting } from '../i18n/utils';
+import { site } from '../data/site';
+import { areas, areasPage } from '../data/paginas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const wsp = waGreeting(site.whatsapp, lang);
+---
+
+<section class="page-hero">
+  <div class="wrap center">
+    <span class="eyebrow reveal">{areasPage.eyebrow[lang]}</span>
+    <h1 class="reveal">{areasPage.title[lang]}</h1>
+    <p class="page-lead reveal">{areasPage.lead[lang]}</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="area-grid">
+      {areas.map((a) => (
+        <article class="area-card reveal">
+          <div class="ico">{a.ico}</div>
+          <h3>{a.titulo[lang]}</h3>
+          <p>{a.desc[lang]}</p>
+          <span class="area-tag">{areasPage.publicoLabel[lang]}: {a.publico[lang]}</span>
+        </article>
+      ))}
+    </div>
+    <div class="center" style="margin-top:46px">
+      <p style="color:var(--tinta-soft); margin-bottom:18px">{areasPage.cta[lang]}</p>
+      <a class="btn btn-wsp" href={wsp}>{areasPage.ctaBtn[lang]}</a>
+    </div>
+  </div>
+</section>

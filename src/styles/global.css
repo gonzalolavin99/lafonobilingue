@@ -302,6 +302,52 @@ footer p{ color:var(--tinta-soft); max-width:440px; margin:0 auto 26px; }
 .faq-a p{ padding:0 24px 22px; color:var(--tinta-soft); font-size:.96rem; margin:0; }
 
 /* =============================================================
+   PÁGINAS INTERNAS (Áreas / Precios)
+   ============================================================= */
+.page-hero{ padding-top:90px; padding-bottom:30px; }
+.page-hero h1{ font-size:clamp(2.2rem,5vw,3.2rem); margin:10px 0 16px; }
+.page-lead{ color:var(--tinta-soft); max-width:560px; margin:0 auto; font-size:1.08rem; }
+
+.area-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.area-card{
+  background:#fff; border:1px solid rgba(191,227,242,.5); border-radius:22px; padding:30px 26px;
+  box-shadow:0 10px 30px rgba(124,197,227,.08); transition:transform .25s, box-shadow .25s;
+}
+.area-card:hover{ transform:translateY(-5px); box-shadow:0 18px 40px rgba(124,197,227,.16); }
+.area-card .ico{ font-size:2rem; margin-bottom:12px; }
+.area-card h3{ font-size:1.18rem; margin-bottom:10px; }
+.area-card p{ color:var(--tinta-soft); font-size:.95rem; margin-bottom:16px; }
+.area-tag{
+  display:inline-block; font-size:.78rem; font-weight:600; color:var(--tinta-soft);
+  background:var(--celeste-pastel,#eaf6fc); border-radius:999px; padding:5px 12px;
+}
+
+.plan-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; align-items:start; }
+.plan-card{
+  position:relative; background:#fff; border:1px solid rgba(191,227,242,.5); border-radius:24px;
+  padding:34px 28px; text-align:center; box-shadow:0 10px 30px rgba(124,197,227,.08);
+  display:flex; flex-direction:column; gap:12px; transition:transform .25s, box-shadow .25s;
+}
+.plan-card:hover{ transform:translateY(-5px); box-shadow:0 18px 40px rgba(124,197,227,.16); }
+.plan-card.featured{ border-color:var(--rosado); box-shadow:0 18px 44px rgba(239,159,194,.22); }
+.plan-badge{
+  position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+  background:linear-gradient(120deg,var(--celeste),var(--rosado)); color:#fff;
+  font-size:.74rem; font-weight:700; letter-spacing:.04em; padding:6px 16px; border-radius:999px;
+}
+.plan-card h3{ font-size:1.25rem; }
+.plan-price{ font-family:'Fraunces',serif; font-size:2.4rem; font-weight:600; color:var(--tinta); }
+.plan-period{ font-size:.86rem; color:var(--tinta-soft); margin-top:-6px; }
+.plan-detail{ color:var(--tinta-soft); font-size:.95rem; }
+.plan-includes{ text-align:left; margin:6px 0 18px; }
+.plan-includes strong{ display:block; font-size:.82rem; text-transform:uppercase; letter-spacing:.05em; color:var(--tinta-soft); margin-bottom:8px; }
+.plan-includes ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+.plan-includes li{ position:relative; padding-left:24px; font-size:.94rem; color:var(--tinta); }
+.plan-includes li::before{ content:'✓'; position:absolute; left:0; color:var(--rosado); font-weight:700; }
+.plan-card .btn{ margin-top:auto; }
+.plan-note{ text-align:center; color:var(--tinta-soft); font-size:.9rem; max-width:620px; margin:40px auto 0; }
+
+/* =============================================================
    RESPONSIVE
    ============================================================= */
 @media (max-width:880px){
@@ -319,9 +365,12 @@ footer p{ color:var(--tinta-soft); max-width:440px; margin:0 auto 26px; }
   .videos{ grid-template-columns:1fr 1fr; }
   .field-row{ grid-template-columns:1fr; }
   .book-card{ padding:30px 22px; }
+  .area-grid{ grid-template-columns:1fr 1fr; }
+  .plan-grid{ grid-template-columns:1fr; max-width:420px; margin:0 auto; }
   section{ padding:64px 20px; }
 }
 @media (max-width:520px){
   .videos{ grid-template-columns:1fr; }
   .steps{ grid-template-columns:1fr; }
+  .area-grid{ grid-template-columns:1fr; }
 }

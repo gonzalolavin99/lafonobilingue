@@ -1,0 +1,42 @@
+---
+import type { Lang } from '../i18n/ui';
+import { waGreeting } from '../i18n/utils';
+import { site } from '../data/site';
+import { planes, preciosPage } from '../data/paginas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const wsp = waGreeting(site.whatsapp, lang);
+---
+
+<section class="page-hero">
+  <div class="wrap center">
+    <span class="eyebrow reveal">{preciosPage.eyebrow[lang]}</span>
+    <h1 class="reveal">{preciosPage.title[lang]}</h1>
+    <p class="page-lead reveal">{preciosPage.lead[lang]}</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="plan-grid">
+      {planes.map((p) => (
+        <article class={`plan-card reveal ${p.destacado ? 'featured' : ''}`}>
+          {p.destacado && <span class="plan-badge">{preciosPage.popular[lang]}</span>}
+          <h3>{p.nombre[lang]}</h3>
+          <div class="plan-price">{p.precio}</div>
+          <div class="plan-period">{p.periodo[lang]}</div>
+          <p class="plan-detail">{p.detalle[lang]}</p>
+          <div class="plan-includes">
+            <strong>{preciosPage.incluyeLabel[lang]}</strong>
+            <ul>
+              {p.incluye[lang].map((i) => <li>{i}</li>)}
+            </ul>
+          </div>
+          <a class="btn btn-wsp" href={wsp}>{preciosPage.ctaBtn[lang]}</a>
+        </article>
+      ))}
+    </div>
+    <p class="plan-note reveal">{preciosPage.nota[lang]}</p>
+  </div>
+</section>

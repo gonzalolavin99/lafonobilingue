@@ -23,3 +23,13 @@ export function localizePath(path: string, lang: Lang): string {
 export function waGreeting(whatsapp: string, lang: Lang): string {
   return `https://wa.me/${whatsapp}?text=${encodeURIComponent(ui[lang].saludo)}`;
 }
+
+/** Dada la URL actual, devuelve la misma página en el otro idioma. */
+export function getAlternatePath(url: URL, target: Lang): string {
+  let path = url.pathname;
+  if (path === '/en' || path.startsWith('/en/')) {
+    path = path.slice(3) || '/';
+  }
+  if (!path.startsWith('/')) path = `/${path}`;
+  return localizePath(path, target);
+}

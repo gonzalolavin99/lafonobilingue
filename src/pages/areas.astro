@@ -1,0 +1,9 @@
+---
+import Page from '../layouts/Page.astro';
+import AreasSection from '../components/AreasSection.astro';
+import { areasPage } from '../data/paginas';
+---
+
+<Page lang="es" title={`${areasPage.title.es} · Francisca Valenzuela`} description={areasPage.lead.es}>
+  <AreasSection lang="es" />
+</Page>

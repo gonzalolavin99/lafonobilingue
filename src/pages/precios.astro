@@ -1,0 +1,9 @@
+---
+import Page from '../layouts/Page.astro';
+import PreciosSection from '../components/PreciosSection.astro';
+import { preciosPage } from '../data/paginas';
+---
+
+<Page lang="es" title={`${preciosPage.title.es} · Francisca Valenzuela`} description={preciosPage.lead.es}>
+  <PreciosSection lang="es" />
+</Page>
