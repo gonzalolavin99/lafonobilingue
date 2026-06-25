@@ -217,13 +217,18 @@ export const collections = { faq, testimonios };
 
 ## 8. Checklist de la migración
 
-- [ ] Paso 1 — Andamiaje Astro corriendo en local
-- [ ] Paso 2 — `global.css` importado
-- [ ] Paso 3 — `Base.astro` con `<head>` + SEO/OG
-- [ ] Paso 4 — `src/data/site.ts` (ex-CONFIG)
-- [ ] Paso 5 — Todas las secciones como componentes
-- [ ] Paso 6 — Collections FAQ + Testimonios
-- [ ] Paso 7 — Imágenes con `<Image>`
-- [ ] Paso 8 — Verificado contra el original (visual + build)
-- [ ] Deploy preview en Vercel revisado
+- [x] Paso 1 — Andamiaje Astro corriendo en local
+- [x] Paso 2 — `global.css` importado
+- [x] Paso 3 — `Base.astro` con `<head>` + SEO/OG
+- [x] Paso 4 — `src/data/site.ts` (ex-CONFIG)
+- [x] Paso 5 — Todas las secciones como componentes
+- [x] Paso 6 — Collections FAQ + Testimonios
+- [x] Paso 7 — Imágenes con `<Image>`
+- [x] Paso 8 — Verificado contra el original (`npm run build` ✓)
+- [x] Actualizado a **Astro v7** (requiere **Node ≥ 22.12**; usamos Node 24 LTS)
+- [ ] Deploy preview en Vercel revisado (fijar Node 22 en Vercel)
 - [ ] Merge a `main` (¡le damos! 🎉)
+
+> ⚠️ **Node:** Astro v7 exige Node ≥ 22.12. Lo dejamos fijado en `package.json`
+> (`engines`) y en `.nvmrc`. En Vercel hay que seleccionar **Node 22.x** en
+> *Settings → Build & Development → Node.js Version* antes del deploy.
