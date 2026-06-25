@@ -71,6 +71,14 @@ header.nav{
 .nav-links a{ color:var(--tinta-soft); transition:color .2s; }
 .nav-links a:hover{ color:var(--tinta); }
 .nav .btn{ padding:11px 20px; font-size:.9rem; }
+.nav-actions{ display:flex; align-items:center; gap:12px; }
+.lang-switch{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:40px; padding:8px 12px; border-radius:999px; font-size:.82rem; font-weight:600;
+  letter-spacing:.04em; color:var(--tinta); background:rgba(255,255,255,.7);
+  border:1.5px solid rgba(191,227,242,.7); transition:transform .2s, border-color .2s, color .2s;
+}
+.lang-switch:hover{ transform:translateY(-2px); border-color:var(--rosado); color:var(--tinta); }
 .burger{ display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--tinta); }
 
 /* =============================================================

@@ -1,22 +1,33 @@
 ---
-import { waMsg, saludo } from '../data/site';
-const wsp = waMsg(saludo);
+import { useTranslations, localizePath, waGreeting } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { site } from '../data/site';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const wsp = waGreeting(site.whatsapp, lang);
+const other: Lang = lang === 'es' ? 'en' : 'es';
+const otherPath = localizePath('/', other);
 ---
 
 <header class="nav">
   <div class="nav-inner">
     <div class="logo">Flga. <span>Fran</span></div>
     <nav class="nav-links">
-      <a href="#modalidades">Modalidades</a>
-      <a href="#sobre">Sobre mí</a>
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#horarios">Horarios</a>
-      <a href="#testimonios">Testimonios</a>
-      <a href="#faq">FAQ</a>
-      <a href="#agendar">Agendar</a>
+      <a href="#modalidades">{t.nav.modalidades}</a>
+      <a href="#sobre">{t.nav.sobre}</a>
+      <a href="#como-funciona">{t.nav.como}</a>
+      <a href="#horarios">{t.nav.horarios}</a>
+      <a href="#testimonios">{t.nav.testimonios}</a>
+      <a href="#faq">{t.nav.faq}</a>
+      <a href="#agendar">{t.nav.agendar}</a>
     </nav>
-    <a class="btn btn-wsp" href={wsp}>💬 Escríbeme</a>
-    <button class="burger" id="burger" type="button" aria-label="Abrir menú">☰</button>
+    <div class="nav-actions">
+      <a class="lang-switch" href={otherPath} title={t.nav.switchLabel} aria-label={t.nav.switchLabel}>{t.nav.switchTo}</a>
+      <a class="btn btn-wsp" href={wsp}>{t.nav.cta}</a>
+    </div>
+    <button class="burger" id="burger" type="button" aria-label="menu">☰</button>
   </div>
 </header>
 

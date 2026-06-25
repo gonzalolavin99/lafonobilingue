@@ -1,12 +1,17 @@
 ---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
 import { site, igUrl } from '../data/site';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="videos" class="section-soft">
   <div class="wrap center">
-    <span class="eyebrow reveal">Mi Instagram</span>
-    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">Mira cómo trabajo</h2>
-    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Tips, ejercicios y momentos de mis sesiones. Sígueme para más contenido.</p>
+    <span class="eyebrow reveal">{t.videos.eyebrow}</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">{t.videos.title}</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">{t.videos.lead}</p>
     <div class="videos">
       {site.videos.map((v) => (
         v.src ? (
@@ -15,16 +20,16 @@ import { site, igUrl } from '../data/site';
           </div>
         ) : v.url ? (
           <div class="reel" data-reel={v.url}>
-            <div class="ph"><div class="play">&#9654;</div><strong>{v.titulo}</strong><small>Ver reel</small></div>
+            <div class="ph"><div class="play">&#9654;</div><strong>{v.titulo[lang]}</strong><small>{t.videos.verReel}</small></div>
           </div>
         ) : (
           <a class="reel" href={igUrl} target="_blank">
-            <div class="ph"><div class="play">&#9654;</div><strong>{v.titulo}</strong><small>Ver en Instagram</small></div>
+            <div class="ph"><div class="play">&#9654;</div><strong>{v.titulo[lang]}</strong><small>{t.videos.verIg}</small></div>
           </a>
         )
       ))}
     </div>
-    <div class="ig-cta reveal"><a class="btn btn-soft" href={igUrl} target="_blank">Ver más en Instagram</a></div>
+    <div class="ig-cta reveal"><a class="btn btn-soft" href={igUrl} target="_blank">{t.videos.cta}</a></div>
   </div>
 </section>
 

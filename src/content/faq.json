@@ -2,43 +2,85 @@
   {
     "id": "edad",
     "orden": 1,
-    "pregunta": "¿Desde qué edad atiendes?",
-    "respuesta": "Atiendo a niñas y niños desde la etapa preescolar (aprox. desde los 2 años) en adelante, y también a adultos. Si tienes dudas sobre tu caso, escríbeme y conversamos."
+    "pregunta": {
+      "es": "¿Desde qué edad atiendes?",
+      "en": "From what age do you see patients?"
+    },
+    "respuesta": {
+      "es": "Atiendo a niñas y niños desde la etapa preescolar (aprox. desde los 2 años) en adelante, y también a adultos. Si tienes dudas sobre tu caso, escríbeme y conversamos.",
+      "en": "I see children from preschool age (around 2 years old) onwards, and adults too. If you have questions about your case, message me and let's talk."
+    }
   },
   {
     "id": "adultos",
     "orden": 2,
-    "pregunta": "¿Atiendes adultos?",
-    "respuesta": "Sí. En adultos trabajo motricidad orofacial y deglución, lenguaje y habla de origen neurológico (como afasia o disartria) y pronunciación en inglés. Cuéntame tu caso y vemos cómo te puedo ayudar."
+    "pregunta": {
+      "es": "¿Atiendes adultos?",
+      "en": "Do you see adults?"
+    },
+    "respuesta": {
+      "es": "Sí. En adultos trabajo motricidad orofacial y deglución, lenguaje y habla de origen neurológico (como afasia o disartria) y pronunciación en inglés. Cuéntame tu caso y vemos cómo te puedo ayudar.",
+      "en": "Yes. With adults I work on orofacial motricity and swallowing, neurological language and speech (such as aphasia or dysarthria) and English pronunciation. Tell me about your case and we'll see how I can help."
+    }
   },
   {
     "id": "duracion",
     "orden": 3,
-    "pregunta": "¿Cuánto dura una sesión?",
-    "respuesta": "Cada sesión dura aproximadamente 45 minutos. La frecuencia (semanal o quincenal) la definimos según las necesidades de cada niña o niño."
+    "pregunta": {
+      "es": "¿Cuánto dura una sesión?",
+      "en": "How long is a session?"
+    },
+    "respuesta": {
+      "es": "Cada sesión dura aproximadamente 45 minutos. La frecuencia (semanal o quincenal) la definimos según las necesidades de cada niña o niño.",
+      "en": "Each session lasts about 45 minutes. We set the frequency (weekly or biweekly) based on each child's needs."
+    }
   },
   {
     "id": "evaluacion",
     "orden": 4,
-    "pregunta": "¿Cómo es la primera evaluación? ¿Entregas informe?",
-    "respuesta": "La primera sesión es una evaluación inicial donde conozco a la persona —a través del juego en el caso de niñas y niños— y observo su lenguaje, habla y comunicación. A partir de ella elaboro un plan personalizado y, si lo necesitas, te entrego un informe."
+    "pregunta": {
+      "es": "¿Cómo es la primera evaluación? ¿Entregas informe?",
+      "en": "What is the first assessment like? Do you provide a report?"
+    },
+    "respuesta": {
+      "es": "La primera sesión es una evaluación inicial donde conozco a la persona —a través del juego en el caso de niñas y niños— y observo su lenguaje, habla y comunicación. A partir de ella elaboro un plan personalizado y, si lo necesitas, te entrego un informe.",
+      "en": "The first session is an initial assessment where I get to know the person —through play in the case of children— and observe their language, speech and communication. From there I build a personalized plan and, if you need it, I provide a report."
+    }
   },
   {
     "id": "boleta",
     "orden": 5,
-    "pregunta": "¿Haces boleta? ¿Sirve para reembolso de Isapre?",
-    "respuesta": "Sí, emito boleta de honorarios que puedes presentar en tu Isapre o seguro complementario para solicitar reembolso, según la cobertura de tu plan."
+    "pregunta": {
+      "es": "¿Haces boleta? ¿Sirve para reembolso de Isapre?",
+      "en": "Do you issue an invoice? Is it valid for insurance reimbursement?"
+    },
+    "respuesta": {
+      "es": "Sí, emito boleta de honorarios que puedes presentar en tu Isapre o seguro complementario para solicitar reembolso, según la cobertura de tu plan.",
+      "en": "Yes, I issue a professional services invoice that you can submit to your health insurer or complementary insurance to request reimbursement, depending on your plan's coverage."
+    }
   },
   {
     "id": "zonas",
     "orden": 6,
-    "pregunta": "¿Qué zonas cubres a domicilio?",
-    "respuesta": "Atiendo a domicilio en sectores de Santiago. Escríbeme con tu comuna y te confirmo disponibilidad. Si quedas fuera de la zona, siempre está la opción online."
+    "pregunta": {
+      "es": "¿Qué zonas cubres a domicilio?",
+      "en": "Which areas do you cover for home visits?"
+    },
+    "respuesta": {
+      "es": "Atiendo a domicilio en sectores de Santiago. Escríbeme con tu comuna y te confirmo disponibilidad. Si quedas fuera de la zona, siempre está la opción online.",
+      "en": "I offer home visits in parts of Santiago. Message me with your district and I'll confirm availability. If you're outside the area, the online option is always available."
+    }
   },
   {
     "id": "ingles",
     "orden": 7,
-    "pregunta": "¿Atiendes en inglés?",
-    "respuesta": "¡Sí! Soy bilingüe español–inglés, así que puedo realizar la terapia en cualquiera de los dos idiomas, ideal para familias expat o bilingües."
+    "pregunta": {
+      "es": "¿Atiendes en inglés?",
+      "en": "Do you offer therapy in English?"
+    },
+    "respuesta": {
+      "es": "¡Sí! Soy bilingüe español–inglés, así que puedo realizar la terapia en cualquiera de los dos idiomas, ideal para familias expat o bilingües.",
+      "en": "Yes! I'm bilingual Spanish–English, so I can run therapy in either language — ideal for expat or bilingual families."
+    }
   }
 ]

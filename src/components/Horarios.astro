@@ -1,25 +1,30 @@
 ---
-import { site, waMsg, saludo } from '../data/site';
-const wsp = waMsg(saludo);
+import { useTranslations, waGreeting } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { site } from '../data/site';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const wsp = waGreeting(site.whatsapp, lang);
 const dias = Object.entries(site.horarios);
 ---
 
 <section id="horarios">
   <div class="wrap center">
-    <span class="eyebrow reveal">Disponibilidad</span>
-    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">Horarios disponibles</h2>
-    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">Estos son mis bloques de atención habituales. Coordinamos el día y la hora exacta por WhatsApp.</p>
+    <span class="eyebrow reveal">{t.horarios.eyebrow}</span>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">{t.horarios.title}</h2>
+    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">{t.horarios.lead}</p>
     <div class="sched reveal">
       {dias.map(([dia, bloques]) => (
         <div class={`day ${bloques.length === 0 ? 'off' : ''}`}>
-          <div class="name">{dia}</div>
+          <div class="name">{t.horarios.dias[dia] ?? dia}</div>
           {bloques.length === 0
-            ? <div class="slot">Cerrado</div>
+            ? <div class="slot">{t.horarios.cerrado}</div>
             : bloques.map((b) => <div class="slot">{b}</div>)}
         </div>
       ))}
     </div>
-    <p class="note">¿No encuentras un horario que te acomode? Escríbeme y buscamos una solución.</p>
-    <div class="center" style="margin-top:26px"><a class="btn btn-wsp" href={wsp}>💬 Reservar un horario</a></div>
+    <p class="note">{t.horarios.note}</p>
+    <div class="center" style="margin-top:26px"><a class="btn btn-wsp" href={wsp}>{t.horarios.cta}</a></div>
   </div>
 </section>

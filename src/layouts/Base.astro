@@ -1,28 +1,36 @@
 ---
 import '../styles/global.css';
+import { ui, defaultLang, type Lang } from '../i18n/ui';
 
 interface Props {
+  lang?: Lang;
   title?: string;
   description?: string;
 }
 
-const {
-  title = 'Francisca Valenzuela · Fonoaudióloga bilingüe',
-  description = 'Francisca Valenzuela Díaz — fonoaudióloga bilingüe. Terapia de lenguaje, habla y comunicación para niños, niñas y adultos, en español e inglés. Presencial en Santiago y online en LATAM. Agenda por WhatsApp.',
-} = Astro.props;
+const { lang = defaultLang as Lang } = Astro.props;
+const meta = ui[lang].meta;
+const title = Astro.props.title ?? meta.title;
+const description = Astro.props.description ?? meta.description;
 
 const ogImage = new URL('/og.png', Astro.site).href;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
+const esUrl = Astro.site ? new URL('/', Astro.site).href : '/';
+const enUrl = Astro.site ? new URL('/en/', Astro.site).href : '/en/';
+const ogLocale = lang === 'en' ? 'en_US' : 'es_CL';
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="es" href={esUrl} />
+  <link rel="alternate" hreflang="en" href={enUrl} />
+  <link rel="alternate" hreflang="x-default" href={esUrl} />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -37,7 +45,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : As
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Francisca Valenzuela, fonoaudióloga bilingüe" />
-  <meta property="og:locale" content="es_CL" />
+  <meta property="og:locale" content={ogLocale} />
   <meta property="og:site_name" content="La fono bilingüe" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />

@@ -1,0 +1,46 @@
+---
+import type { Lang } from '../i18n/ui';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import Modalidades from './Modalidades.astro';
+import Sobre from './Sobre.astro';
+import Banner from './Banner.astro';
+import ComoFunciona from './ComoFunciona.astro';
+import Horarios from './Horarios.astro';
+import Videos from './Videos.astro';
+import Testimonios from './Testimonios.astro';
+import Faq from './Faq.astro';
+import Agendar from './Agendar.astro';
+import Footer from './Footer.astro';
+import FabWhatsApp from './FabWhatsApp.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+
+<Nav lang={lang} />
+<Hero lang={lang} />
+<Modalidades lang={lang} />
+<Sobre lang={lang} />
+<Banner lang={lang} />
+<ComoFunciona lang={lang} />
+<Horarios lang={lang} />
+<Videos lang={lang} />
+<Testimonios lang={lang} />
+<Faq lang={lang} />
+<Agendar lang={lang} />
+<Footer lang={lang} />
+<FabWhatsApp lang={lang} />
+
+<script>
+  // Animaciones reveal on scroll (igual que el index.html original).
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (en.isIntersecting) {
+        en.target.classList.add('show');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>

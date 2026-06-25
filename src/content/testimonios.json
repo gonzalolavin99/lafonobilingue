@@ -1,17 +1,35 @@
 [
   {
     "id": "tomas",
-    "texto": "Tomás pasó de frustrarse a hablar con confianza. Fran es cercana y los niños la adoran.",
-    "autor": "M., mamá de Tomás (5)"
+    "texto": {
+      "es": "Tomás pasó de frustrarse a hablar con confianza. Fran es cercana y los niños la adoran.",
+      "en": "Tomás went from getting frustrated to speaking with confidence. Fran is warm and kids adore her."
+    },
+    "autor": {
+      "es": "M., mamá de Tomás (5)",
+      "en": "M., Tomás's mom (5)"
+    }
   },
   {
     "id": "isidora",
-    "texto": "Las sesiones online funcionaron perfecto para nosotros que vivimos lejos. Vimos avances en semanas.",
-    "autor": "C., papá de Isidora (4)"
+    "texto": {
+      "es": "Las sesiones online funcionaron perfecto para nosotros que vivimos lejos. Vimos avances en semanas.",
+      "en": "The online sessions worked perfectly for us since we live far away. We saw progress within weeks."
+    },
+    "autor": {
+      "es": "C., papá de Isidora (4)",
+      "en": "C., Isidora's dad (4)"
+    }
   },
   {
     "id": "benjamin",
-    "texto": "Nos explicó todo con paciencia y nos dio herramientas para apoyar en casa. 100% recomendada.",
-    "autor": "P., mamá de Benjamín (6)"
+    "texto": {
+      "es": "Nos explicó todo con paciencia y nos dio herramientas para apoyar en casa. 100% recomendada.",
+      "en": "She explained everything patiently and gave us tools to support at home. 100% recommended."
+    },
+    "autor": {
+      "es": "P., mamá de Benjamín (6)",
+      "en": "P., Benjamín's mom (6)"
+    }
   }
 ]
