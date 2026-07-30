@@ -8,4 +8,4 @@ const t = useTranslations(lang);
 const wsp = waGreeting(site.whatsapp, lang);
 ---
 
-<a class="fab" href={wsp} title={t.fab}>💬</a>
+<a class="fab" href={wsp} title={t.fab} aria-label={t.fab}>💬</a>

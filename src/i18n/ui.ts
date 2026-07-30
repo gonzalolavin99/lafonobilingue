@@ -33,6 +33,7 @@ export const ui = {
       cta: '💬 Escríbeme',
       switchTo: 'EN',
       switchLabel: 'Ver en inglés',
+      menu: 'Menú',
     },
     hero: {
       eyebrow: 'La fono bilingüe · ES / EN',
@@ -160,6 +161,7 @@ export const ui = {
       cta: '💬 Message me',
       switchTo: 'ES',
       switchLabel: 'View in Spanish',
+      menu: 'Menu',
     },
     hero: {
       eyebrow: 'The bilingual SLP · ES / EN',

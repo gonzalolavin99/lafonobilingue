@@ -10,8 +10,8 @@ const t = useTranslations(lang);
 <section id="videos" class="section-soft">
   <div class="wrap center">
     <span class="eyebrow reveal">{t.videos.eyebrow}</span>
-    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">{t.videos.title}</h2>
-    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">{t.videos.lead}</p>
+    <h2 class="reveal section-title">{t.videos.title}</h2>
+    <p class="reveal section-lead">{t.videos.lead}</p>
     <div class="videos">
       {site.videos.map((v) => (
         v.src ? (
@@ -19,8 +19,8 @@ const t = useTranslations(lang);
             <video src={v.src} poster={v.poster} controls playsinline preload="metadata"></video>
           </div>
         ) : v.url ? (
-          <div class="reel" data-reel={v.url}>
-            <div class="ph"><div class="play">&#9654;</div><strong>{v.titulo[lang]}</strong><small>{t.videos.verReel}</small></div>
+          <div class="reel" data-reel={v.url} tabindex="0" role="button" aria-label={`${v.titulo[lang]} — ${t.videos.verReel}`}>
+            <div class="ph"><div class="play" aria-hidden="true">&#9654;</div><strong>{v.titulo[lang]}</strong><small>{t.videos.verReel}</small></div>
           </div>
         ) : (
           <a class="reel" href={igUrl} target="_blank">
@@ -36,11 +36,15 @@ const t = useTranslations(lang);
 <script>
   // Carga diferida de reels de Instagram: el primer clic inserta el iframe.
   document.querySelectorAll<HTMLElement>('.reel[data-reel]').forEach((card) => {
-    card.addEventListener('click', () => {
+    const load = () => {
       const url = card.dataset.reel;
       if (!url) return;
       const embed = url.replace(/\/?$/, '/') + 'embed';
-      card.innerHTML = `<iframe src="${embed}" allowtransparency="true" allowfullscreen loading="lazy"></iframe>`;
-    }, { once: true });
+      card.innerHTML = `<iframe src="${embed}" allowtransparency="true" allowfullscreen loading="lazy" title="Instagram reel"></iframe>`;
+    };
+    card.addEventListener('click', load, { once: true });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
   });
 </script>

@@ -11,8 +11,8 @@ const testimonios = await getCollection('testimonios');
 <section id="testimonios">
   <div class="wrap center">
     <span class="eyebrow reveal">{t.testimonios.eyebrow}</span>
-    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">{t.testimonios.title}</h2>
-    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">{t.testimonios.lead}</p>
+    <h2 class="reveal section-title">{t.testimonios.title}</h2>
+    <p class="reveal section-lead">{t.testimonios.lead}</p>
     <div class="testis reveal">
       {testimonios.map((item) => (
         <div class="testi">

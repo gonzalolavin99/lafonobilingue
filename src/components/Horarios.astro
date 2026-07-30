@@ -7,16 +7,21 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const wsp = waGreeting(site.whatsapp, lang);
 const dias = Object.entries(site.horarios);
+// Número de día según Date.getDay() (Domingo = 0) para destacar "hoy".
+const dowMap: Record<string, number> = {
+  'Domingo': 0, 'Lunes': 1, 'Martes': 2, 'Miércoles': 3,
+  'Jueves': 4, 'Viernes': 5, 'Sábado': 6,
+};
 ---
 
 <section id="horarios">
   <div class="wrap center">
     <span class="eyebrow reveal">{t.horarios.eyebrow}</span>
-    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">{t.horarios.title}</h2>
-    <p class="reveal" style="color:var(--tinta-soft); max-width:480px; margin:14px auto 0">{t.horarios.lead}</p>
+    <h2 class="reveal section-title">{t.horarios.title}</h2>
+    <p class="reveal section-lead">{t.horarios.lead}</p>
     <div class="sched reveal">
       {dias.map(([dia, bloques]) => (
-        <div class={`day ${bloques.length === 0 ? 'off' : ''}`}>
+        <div class={`day ${bloques.length === 0 ? 'off' : ''}`} data-dow={dowMap[dia]}>
           <div class="name">{t.horarios.dias[dia] ?? dia}</div>
           {bloques.length === 0
             ? <div class="slot">{t.horarios.cerrado}</div>
@@ -28,3 +33,11 @@ const dias = Object.entries(site.horarios);
     <div class="center" style="margin-top:26px"><a class="btn btn-wsp" href={wsp}>{t.horarios.cta}</a></div>
   </div>
 </section>
+
+<script>
+  // Marca la tarjeta del día actual con un punto verde.
+  const hoy = new Date().getDay();
+  document.querySelectorAll<HTMLElement>('.day[data-dow]').forEach((el) => {
+    if (Number(el.dataset.dow) === hoy) el.classList.add('today');
+  });
+</script>

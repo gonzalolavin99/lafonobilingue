@@ -10,42 +10,42 @@ const t = useTranslations(lang);
 <section id="agendar">
   <div class="wrap center">
     <span class="eyebrow reveal">{t.agendar.eyebrow}</span>
-    <h2 class="reveal" style="font-size:clamp(2rem,4vw,2.7rem)">{t.agendar.title}</h2>
-    <p class="reveal" style="color:var(--tinta-soft); max-width:520px; margin:14px auto 0">{t.agendar.lead}</p>
+    <h2 class="reveal section-title">{t.agendar.title}</h2>
+    <p class="reveal section-lead">{t.agendar.lead}</p>
 
     <form class="book-card reveal" id="book-form" data-wa-base={waBase} data-wa-labels={JSON.stringify(t.agendar.waLabels)} style="text-align:left">
       <div class="field">
-        <label>{t.agendar.nombre}</label>
-        <input type="text" name="nombre" placeholder={t.agendar.nombrePh} required />
+        <label for="bk-nombre">{t.agendar.nombre}</label>
+        <input id="bk-nombre" type="text" name="nombre" placeholder={t.agendar.nombrePh} autocomplete="name" required />
       </div>
       <div class="field-row">
         <div class="field">
-          <label>{t.agendar.modalidad}</label>
-          <select name="modalidad" required>
+          <label for="bk-modalidad">{t.agendar.modalidad}</label>
+          <select id="bk-modalidad" name="modalidad" required>
             <option value="" disabled selected>{t.agendar.modalidadPlaceholder}</option>
             {t.agendar.modalidadOpts.map((o) => <option>{o}</option>)}
           </select>
         </div>
         <div class="field">
-          <label>{t.agendar.idioma}</label>
-          <select name="idioma" required>
+          <label for="bk-idioma">{t.agendar.idioma}</label>
+          <select id="bk-idioma" name="idioma" required>
             {t.agendar.idiomaOpts.map((o) => <option>{o}</option>)}
           </select>
         </div>
       </div>
       <div class="field-row">
         <div class="field">
-          <label>{t.agendar.fecha}</label>
-          <input type="date" name="fecha" required />
+          <label for="bk-fecha">{t.agendar.fecha}</label>
+          <input id="bk-fecha" type="date" name="fecha" required />
         </div>
         <div class="field">
-          <label>{t.agendar.hora}</label>
-          <input type="time" name="hora" required />
+          <label for="bk-hora">{t.agendar.hora}</label>
+          <input id="bk-hora" type="time" name="hora" required />
         </div>
       </div>
       <div class="field">
-        <label>{t.agendar.motivo}</label>
-        <textarea name="motivo" rows="3" placeholder={t.agendar.motivoPh}></textarea>
+        <label for="bk-motivo">{t.agendar.motivo}</label>
+        <textarea id="bk-motivo" name="motivo" rows="3" placeholder={t.agendar.motivoPh}></textarea>
       </div>
       <button type="submit" class="btn btn-wsp">{t.agendar.submit}</button>
     </form>
@@ -54,6 +54,14 @@ const t = useTranslations(lang);
 
 <script>
   const form = document.getElementById('book-form') as HTMLFormElement | null;
+
+  // No permitir agendar en fechas pasadas.
+  const fechaInput = form?.elements.namedItem('fecha') as HTMLInputElement | null;
+  if (fechaInput) {
+    const hoy = new Date();
+    fechaInput.min = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}-${String(hoy.getDate()).padStart(2, '0')}`;
+  }
+
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
     const f = e.target as HTMLFormElement;

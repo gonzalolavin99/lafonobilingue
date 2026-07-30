@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { ui, defaultLang, type Lang } from '../i18n/ui';
+import { site, igUrl } from '../data/site';
 
 interface Props {
   lang?: Lang;
@@ -18,6 +19,18 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : As
 const esUrl = Astro.site ? new URL('/', Astro.site).href : '/';
 const enUrl = Astro.site ? new URL('/en/', Astro.site).href : '/en/';
 const ogLocale = lang === 'en' ? 'en_US' : 'es_CL';
+
+// Datos estructurados para buscadores (Google rich results).
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'La fono bilingüe · Francisca Valenzuela',
+  description,
+  image: ogImage,
+  url: canonical,
+  telephone: `+${site.whatsapp}`,
+  sameAs: [igUrl],
+});
 ---
 
 <!DOCTYPE html>
@@ -25,6 +38,7 @@ const ogLocale = lang === 'en' ? 'en_US' : 'es_CL';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fffdfb" />
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
@@ -59,6 +73,7 @@ const ogLocale = lang === 'en' ? 'en_US' : 'es_CL';
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Poppins:wght@300;400;500;600&display=swap"
     rel="stylesheet"
   />
+  <script type="application/ld+json" set:html={jsonLd} />
 </head>
 <body>
   <slot />

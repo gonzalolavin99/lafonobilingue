@@ -16,8 +16,8 @@ const areasPath = localizePath('/areas', lang);
 
 <header class="nav">
   <div class="nav-inner">
-    <div class="logo">Flga. <span>Fran</span></div>
-    <nav class="nav-links">
+    <a class="logo" href={home} aria-label="La fono bilingüe — inicio">Flga. <span>Fran</span></a>
+    <nav class="nav-links" id="nav-links" aria-label={t.nav.menu}>
       <a href={`${home}#modalidades`}>{t.nav.modalidades}</a>
       <a href={areasPath}>{t.nav.areas}</a>
       <a href={preciosPath}>{t.nav.precios}</a>
@@ -25,21 +25,43 @@ const areasPath = localizePath('/areas', lang);
       <a href={`${home}#horarios`}>{t.nav.horarios}</a>
       <a href={`${home}#faq`}>{t.nav.faq}</a>
       <a href={`${home}#agendar`}>{t.nav.agendar}</a>
+      <a class="btn btn-wsp mobile-cta" href={wsp}>{t.nav.cta}</a>
     </nav>
     <div class="nav-actions">
       <a class="lang-switch" href={otherPath} title={t.nav.switchLabel} aria-label={t.nav.switchLabel}>{t.nav.switchTo}</a>
       <a class="btn btn-wsp" href={wsp}>{t.nav.cta}</a>
+      <button class="burger" id="burger" type="button" aria-label={t.nav.menu} aria-expanded="false" aria-controls="nav-links">☰</button>
     </div>
-    <button class="burger" id="burger" type="button" aria-label="menu">☰</button>
   </div>
 </header>
 
 <script>
   const burger = document.getElementById('burger');
-  const links = document.querySelector('.nav-links') as HTMLElement | null;
+  const links = document.getElementById('nav-links');
+  const header = document.querySelector('header.nav');
+
+  const closeMenu = () => {
+    links?.classList.remove('open');
+    burger?.setAttribute('aria-expanded', 'false');
+    if (burger) burger.textContent = '☰';
+  };
+
   burger?.addEventListener('click', () => {
-    if (!links) return;
-    const visible = getComputedStyle(links).display !== 'none';
-    links.style.display = visible ? 'none' : 'flex';
+    const open = links?.classList.toggle('open') ?? false;
+    burger.setAttribute('aria-expanded', String(open));
+    burger.textContent = open ? '✕' : '☰';
   });
+
+  // Cierra al elegir un enlace, presionar Escape o tocar fuera del menú.
+  links?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  document.addEventListener('click', (e) => {
+    if (!links?.classList.contains('open')) return;
+    if (e.target instanceof Node && !links.contains(e.target) && !burger?.contains(e.target)) closeMenu();
+  });
+
+  // Navbar más compacta y con sombra al hacer scroll.
+  const onScroll = () => header?.classList.toggle('scrolled', window.scrollY > 10);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 </script>
